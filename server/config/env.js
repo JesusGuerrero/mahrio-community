@@ -12,7 +12,7 @@ module.exports = function( env ) {
   };
 
   environment.rootPath = rootPath;
-  environment.port = env.NODE_PORT || environment.port;
+  environment.port = env.PORT || env.NODE_PORT || environment.port;
   environment.url = env.NODE_URL || environment.url;
   environment.mongo = env.MONGOLAB_URI || environment.mongo;
 
