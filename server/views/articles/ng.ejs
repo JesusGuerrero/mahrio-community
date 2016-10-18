@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Manage Articles</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    </head>
+
+    <body ng-app="Articles" ng-controller="AppCtrl as vm">
+        <div class="container text-center">
+            <a class="btn btn-primary" href="#/">List Articles</a>
+            <a class="btn btn-primary" href="#/new">New Article</a>
+            <div ng-view></div>
+        </div>
+
+        <script type="text/javascript" src="/assets/angular/angular.min.js"></script>
+        <script type="text/javascript" src="/assets/angular-route/angular-route.min.js"></script>
+        <script type="text/javascript" src="/assets/ng/articles/index.js"></script>
+    </body>
+</html>
+
+
+
+
+
