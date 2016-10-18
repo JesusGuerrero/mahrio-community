@@ -1,0 +1,14 @@
+<div class="row" ng-controller="ListCtrl as vm">
+    <div class="col-sm-8 col-sm-offset-2 bg-success">
+        <div class="row" ng-repeat="article in vm.articles">
+            <div class="col-sm-8">
+                {{article.title}}
+            </div>
+            <div class="col-sm-4">
+                <a href="#/{{article.link}}" class="btn btn-default">VIEW</a>
+                <a href="#/{{article.link}}/edit" class="btn btn-warning">EDIT</a>
+                <button ng-click="vm.delete(article._id, $index)" class="btn btn-danger">DELETE</button>
+            </div>
+        </div>
+    </div>
+</div>
