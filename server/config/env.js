@@ -16,5 +16,9 @@ module.exports = function( env ) {
   environment.url = env.NODE_URL || environment.url;
   environment.mongo = env.MONGOLAB_URI || environment.mongo;
 
+  if( env === 'production'){
+    delete environment.url;
+  }
+
   return environment;
 };
