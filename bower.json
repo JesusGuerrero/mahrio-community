@@ -1,0 +1,23 @@
+{
+  "name": "mahrio-community",
+  "description": "MAHRIO: mongo, angular, raspberry, ionic, oauth",
+  "main": "server/index.js",
+  "authors": [
+    "Jesus Guerrero <rocha.jesus@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/JesusGuerrero/mahrio-community",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "socket.io-client": "^1.5.0",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
+}

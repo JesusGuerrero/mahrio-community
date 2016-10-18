@@ -1,0 +1,28 @@
+{
+  "name": "mahrio-community",
+  "version": "0.0.1",
+  "description": "MAHRIO: mongo, angular, raspberry, ionic, oauth",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JesusGuerrero/mahrio-community.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JesusGuerrero/mahrio-community/issues"
+  },
+  "homepage": "https://github.com/JesusGuerrero/mahrio-community#readme",
+  "dependencies": {
+    "boom": "2.10.1",
+    "ejs": "2.4.2",
+    "good": "6.3.0",
+    "good-console": "5.3.1",
+    "hapi": "8.8.1",
+    "node-env-file": "0.1.8",
+    "socket.io": "^1.5.0"
+  }
+}
