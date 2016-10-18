@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = function( server ) {
+  require('./articles/index')( server );
+
   server.route({
     method: 'GET',
     path: '/assets/{param*}',
@@ -12,7 +14,7 @@ module.exports = function( server ) {
   });
   server.route({
     method: 'GET',
-    path: '/{any*}',
+    path: '/',
     handler: function( request, reply ) {
       reply.view('index');
     }
