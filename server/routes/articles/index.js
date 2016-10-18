@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
   schema = mongoose.Schema({
     title: { type: String, required: true },
-    link: { type: String, required: true },
+    link: { type: String, required: true, unique: true },
     deck: { type: String },
     type: { type: String, default: 'Article' },
     coverImage: { type: String },
@@ -18,40 +18,47 @@ var mongoose = require('mongoose'),
 
 module.exports = function(server) {
   [{
-    method: 'GET',
-    path: '/article/{link?}',
+    method: ['GET','POST'],
+    path: '/articles/{link?}',
     config: {
       handler: function ( request, reply ) {
-        Article.findOne({
-          link: request.params.link
-        }).exec( function( err, article ) {
-          if( !article ) {
-            reply.view('article/not-found');
-          } else {
-            reply.view('article/index', {
-              article: article
-            });
-          }
-        });
-      }
-    }
-  }, {
-    method: ['GET','POST'],
-    path: '/api/articles',
-    config: {
-      handler: function( request, reply ) {
-        if( request.method === 'post' ) {
-          Article.create( request.payload.article, function ( err ) {
-            if( err ) { return Boom.badRequest(err); }
-
-            reply({created: true});
+        if( request.params.link ) {
+          Article.findOne({
+            link: request.params.link
+          }).exec( function( err, article ) {
+            if( !article ) {
+              reply.view('articles/not-found');
+            } else {
+              reply.view('articles/one', {
+                article: article
+              });
+            }
           });
         } else {
-          Article.find().exec( function(err, articles) {
-            if( err ) { return Boom.badRequest(err); }
+          if( request.method === 'post' ) {
+            Article.create( request.payload.article, function ( err ) {
+              if( err ) {
+                if( 11000 === err.code || 11001 === err.code ) {
+                  return reply( Boom.badRequest("Duplicate key error index") );
+                } else {
+                  return reply( Boom.badRequest(err) );
+                }
+              }
+              reply({created: true});
+            });
+          } else {
+            Article.find().exec( function(err, articles) {
+              if( err ) { return reply( Boom.badRequest(err) ); }
 
-            reply({articles: articles});
-          });
+              if( request.query.type === 'json' ) {
+                reply({articles: articles});
+              } else {
+                reply.view('articles/index', {
+                  articles: articles
+                });
+              }
+            });
+          }
         }
       }
     }
@@ -64,8 +71,13 @@ module.exports = function(server) {
           Article.update({_id: request.params.id}, request.payload.article, {
             upsert: false
           }).exec( function(err, article){
-            if( err ) { return Boom.badRequest(err); }
-
+            if( err ) {
+              if( 11000 === err.code || 11001 === err.code ) {
+                return reply( Boom.badRequest("Duplicate key error index") );
+              } else {
+                return reply( Boom.badRequest(err) );
+              }
+            }
             if( article && article.ok && article.nModified ) {
               reply({updated: true});
             } else {
@@ -74,9 +86,9 @@ module.exports = function(server) {
           });
         } else {
           Article.remove({_id: request.params.id}).exec( function(err, article) {
-            if( err ) { return Boom.badRequest(err); }
+            if( err ) { return reply( Boom.badRequest(err) ); }
 
-            if( article && article.ok && article.nModified ) {
+            if( article && article.result && article.result.ok ) {
               reply({deleted: true});
             } else {
               reply({deleted: false});
