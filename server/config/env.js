@@ -14,7 +14,7 @@ module.exports = function( env ) {
   environment.rootPath = rootPath;
   environment.port = env.PORT || env.NODE_PORT || environment.port;
   environment.url = env.NODE_URL || environment.url;
-  environment.mongo = env.MONGOLAB_URI || environment.mongo;
+  environment.mongo = env.MONGODB_URI || environment.mongo;
 
   if( env.NODE_ENV === 'production'){
     delete environment.url;

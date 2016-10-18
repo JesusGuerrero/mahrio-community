@@ -4,7 +4,7 @@
   "description": "MAHRIO: mongo, angular, raspberry, ionic, oauth",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,8 @@
     "good": "6.3.0",
     "good-console": "5.3.1",
     "hapi": "8.8.1",
+    "mongoose": "^4.6.4",
     "node-env-file": "0.1.8",
     "socket.io": "^1.5.0"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }

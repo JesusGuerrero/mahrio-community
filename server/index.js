@@ -9,7 +9,8 @@ if ( process.env.NODE_ENV === 'development' ) {
 
 const CONFIG = require('./config/env')( process.env )
   , SERVER = require('./config/hapi')( CONFIG )
-  , IO = require('./config/sockets')( SERVER );
+  , IO = require('./config/sockets')( SERVER )
+  , DB = require('./config/database')( CONFIG, SERVER );
 
 require('./routes/index')( SERVER );
 
