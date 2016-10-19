@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Articles', ['ngRoute'])
+angular.module('Articles', ['ngRoute','textAngular'])
   .config( function($routeProvider) {
     $routeProvider
       .when('/', {

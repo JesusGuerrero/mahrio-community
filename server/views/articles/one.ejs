@@ -1,9 +1,23 @@
-<h1>One Articles</h1>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><%= article.title %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="/assets/css/index.css" type="text/css" rel="stylesheet"/>
+    </head>
 
-<%= article._id %>
-<br/>
-<%= article.title %>
-<br/>
-<%= article.link %>
-<br/>
-<%= article.body %>
+    <body>
+        <div class="container">
+            <article>
+                <header>
+                    <h1><%= article.title %></h1>
+                </header>
+                <div>
+                    <%- article.body %>
+                </div>
+            </article>
+        </div>
+    </body>
+</html>
