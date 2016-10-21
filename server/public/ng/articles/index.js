@@ -27,7 +27,7 @@ angular.module('Articles', ['ngRoute','textAngular'])
   .controller('AppCtrl', [function(){
     var that = this;
   }])
-  .controller('ListCtrl', ['$http',function($http){
+  .controller('ListCtrl', ['$http', '$window', function($http, $window){
     var that = this;
 
     $http.get('/articles?type=json')
@@ -36,11 +36,13 @@ angular.module('Articles', ['ngRoute','textAngular'])
       });
 
     that.delete = function( id, index ) {
-      $http.delete('/api/articles/' + id)
-        .then( function(res){
-          that.articles.splice(index, 1);
-        });
-
+      var isDelete = $window.confirm('Are you sure?');
+      if( isDelete ) {
+        $http.delete('/api/articles/' + id)
+          .then( function(res){
+            that.articles.splice(index, 1);
+          });
+      }
     };
   }])
   .controller('NewCtrl', ['$rootScope', '$http', function( $rootScope, $http ){

@@ -1,28 +1,17 @@
 <div class="row" ng-controller="ShowCtrl as vm">
     <div class="col-sm-8 col-sm-offset-2">
         <div class="row">
-            <div class="col-sm-2">
-                Title:
-            </div>
-            <div class="col-sm-10">
-                {{vm.article.title}}
+            <div class="col-sm-10 col-sm-offset-1">
+                <h1>{{vm.article.title}}</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-2">
-                Link:
-            </div>
-            <div class="col-sm-10">
-                {{vm.article.link}}
+            <div class="col-sm-10 col-sm-offset-1">
+                <a href="/articles/{{vm.article.link}}">Preview</a>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-2">
-                Body:
-            </div>
-            <div class="col-sm-10">
-                {{vm.article.body}}
-            </div>
+            <div class="col-sm-10 col-sm-offset-1" ng-bind-html="vm.article.body"></div>
         </div>
     </div>
 </div>
